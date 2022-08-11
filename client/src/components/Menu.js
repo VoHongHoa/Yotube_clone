@@ -14,15 +14,15 @@ function Menu(props) {
       <div className="menu-item mt-2">
         <div className="child-item">
           <i class="fa-solid fa-house"></i>
-          <span>Trang chủ</span>
+          <span>Home</span>
         </div>
         <div className="child-item">
           <i class="fa-solid fa-compass"></i>
-          <span>Khám phá</span>
+          <span>Explore</span>
         </div>
         <div className="child-item">
           <i class="fa-solid fa-video"></i>
-          <span>Kênh đăng kí</span>
+          <span>Subscriptions</span>
         </div>
         <div className="child-item">
           <i class="fa-solid fa-compact-disc"></i>
@@ -37,11 +37,11 @@ function Menu(props) {
         <hr></hr>
         <div className="child-item">
           <i class="fas fa-photo-video"></i>
-          <span>Thư viện</span>
+          <span>Library</span>
         </div>
         <div className="child-item">
           <i class="fas fa-cog"></i>
-          <span>Cài đặt</span>
+          <span>Setting</span>
         </div>
         <div className="child-item" onClick={() => handleChangeModeMenu()}>
           <i class="fas fa-lightbulb"></i>
@@ -49,40 +49,32 @@ function Menu(props) {
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Help</span>
         </div>
         <hr></hr>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Help</span>
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>History</span>
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Like</span>
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Watch later</span>
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Music</span>
         </div>
         <div className="child-item">
           <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
-        </div>
-        <div className="child-item">
-          <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
-        </div>
-        <div className="child-item">
-          <i class="fas fa-question-circle"></i>
-          <span>Trợ giúp</span>
+          <span>Sports</span>
         </div>
       </div>
     </div>

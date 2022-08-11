@@ -25,9 +25,9 @@
 .App {
     .row {
         .left-container {
-
             position: sticky;
-            height: 100vh
+            height: 100vh;
+            top: 0
         }
 
         .right-container {}
