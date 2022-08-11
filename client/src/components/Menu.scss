@@ -1,0 +1,58 @@
+.menu {
+    height: 100vh;
+    overflow-y: hidden;
+
+    &:hover {
+        overflow-y: scroll;
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .logo-title {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+
+    .menu-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 5px;
+        padding: 5px;
+
+        .child-item {
+            padding: 6px;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+            cursor: pointer;
+
+            i {
+                font-size: 20px;
+            }
+
+            &:hover {
+                color: blue;
+            }
+        }
+
+        .sign-in {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            button {
+                border-radius: 12px;
+                width: fit-content;
+
+            }
+        }
+    }
+
+
+}

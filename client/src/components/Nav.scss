@@ -1,0 +1,30 @@
+.nav {
+    margin: 5px;
+
+    .search-input {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            font-size: 25px;
+            margin-left: -30px;
+
+        }
+
+        input {
+            width: 500px;
+            padding: 5px;
+        }
+
+
+    }
+
+    .login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
