@@ -36,7 +36,7 @@ export const deleteUser = async (req, res, next) => {
 };
 export const getUser = async (req, res, next) => {
   try {
-    let user = await User.findOne(req.params.id);
+    let user = await User.findById(req.params.id);
     res.status(200).json(user);
   } catch (err) {
     next(err);

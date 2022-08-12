@@ -31,7 +31,11 @@
             flex-direction: row;
             gap: 15px;
             align-items: center;
+            text-decoration: none;
             cursor: pointer;
+            color: black;
+
+
 
             i {
                 font-size: 20px;
@@ -40,7 +44,28 @@
             &:hover {
                 color: blue;
             }
+
+
         }
+
+        .active-child-item {
+            padding: 6px;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: blue;
+
+
+
+            i {
+                font-size: 20px;
+            }
+        }
+
+
 
         .sign-in {
             display: flex;

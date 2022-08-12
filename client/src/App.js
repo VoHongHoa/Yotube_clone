@@ -39,8 +39,10 @@ function App() {
             <div className="content-container mt-4">
               <Routes>
                 <Route path="/">
-                  <Route index element={<Homepage />} />
-                  <Route path="/signin" element={<Signin />} />
+                  <Route index element={<Homepage type="random" />} />
+                  <Route path="trend" element={<Homepage type="trend" />} />
+                  <Route path="sub" element={<Homepage type="sub" />} />
+                  <Route path="signin" element={<Signin />} />
                   <Route path="video">
                     <Route path=":id" element={<Video />} />
                   </Route>

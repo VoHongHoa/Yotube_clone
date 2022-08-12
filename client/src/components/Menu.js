@@ -1,36 +1,62 @@
 import "./Menu.scss";
 import logo from "../image/logo.webp";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 function Menu(props) {
   let navigate = useNavigate();
   const handleChangeModeMenu = () => {
     props.handleChangeMode();
   };
-  const handleGoHomepage = () => {
-    navigate("/");
+  const handleChangepage = (page) => {
+    if (page === "signin") {
+      navigate("/signin");
+      return;
+    }
   };
-  const handleSignin = () => {
-    navigate("/signin");
+  let activeStyle = {
+    textDecoration: "underline",
+    color: "yellow",
+    display: "flex",
+    gap: "5px",
   };
+
   return (
     <div className="menu">
-      <div className="logo" onClick={() => handleGoHomepage()}>
+      <div className="logo" onClick={() => handleChangepage("home")}>
         <img src={logo} alt="Youtue logo" height="35px" />
         <span className="logo-title">YouTube</span>
       </div>
       <div className="menu-item mt-2">
-        <div className="child-item">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "active-child-item" : "child-item"
+          }
+        >
           <i className="fa-solid fa-house"></i>
           <span>Home</span>
-        </div>
-        <div className="child-item">
+        </NavLink>
+
+        <NavLink
+          to="/trend"
+          className={({ isActive }) =>
+            isActive ? "active-child-item" : "child-item"
+          }
+        >
           <i className="fa-solid fa-compass"></i>
           <span>Explore</span>
-        </div>
-        <div className="child-item">
+        </NavLink>
+
+        <NavLink
+          to="/sub"
+          className={({ isActive }) =>
+            isActive ? "active-child-item" : "child-item"
+          }
+        >
           <i className="fa-solid fa-video"></i>
           <span>Subscriptions</span>
-        </div>
+        </NavLink>
         <div className="child-item">
           <i className="fa-solid fa-compact-disc"></i>
           <span>Short</span>
@@ -39,7 +65,10 @@ function Menu(props) {
 
         <div className="sign-in">
           <p>Sign in to like videos, comment and subscrise.</p>
-          <button className="btn btn-primary" onClick={() => handleSignin()}>
+          <button
+            className="btn btn-primary"
+            onClick={() => handleChangepage("signin")}
+          >
             Sign in
           </button>
         </div>

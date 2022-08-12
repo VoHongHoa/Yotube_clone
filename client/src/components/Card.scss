@@ -1,0 +1,44 @@
+.grid-item {
+    cursor: pointer;
+
+    .video-image {
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .video-information {
+        .channel-image {
+            .image {
+                background-image: url("../image/logo.webp");
+                height: 40px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                border: 1px solid black;
+                width: 100%;
+                border-radius: 50%
+            }
+
+        }
+
+        .information {
+            display: flex;
+            flex-direction: column;
+
+            .video-title {
+                font-weight: 500;
+                font-size: 19px;
+            }
+
+            .channel-name {
+                font-size: 14px;
+            }
+
+            .video-detail {
+                font-size: 14px;
+            }
+        }
+    }
+}
