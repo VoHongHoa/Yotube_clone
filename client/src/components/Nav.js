@@ -1,10 +1,9 @@
 import "./Nav.scss";
-import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Nav() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const handleChangeMode = () => {
-    setIsDarkMode(!isDarkMode);
+  let navigate = useNavigate();
+  const handleSignin = () => {
+    navigate("/signin");
   };
   return (
     <div className="nav">
@@ -13,11 +12,14 @@ function Nav() {
           <input type="text" placeholder="Search..." />
         </form>
         <div className="icon-search">
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
       </div>
       <div className="login col-4">
-        <button className="btn btn-primary"> Sign in</button>
+        <button className="btn btn-primary" onClick={() => handleSignin()}>
+          {" "}
+          Sign in
+        </button>
       </div>
     </div>
   );

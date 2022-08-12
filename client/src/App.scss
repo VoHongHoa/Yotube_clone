@@ -30,7 +30,14 @@
             top: 0
         }
 
-        .right-container {}
+        .right-container {
+            .nav-container {
+                position: sticky;
+                top: 0px;
+
+                padding: 5px;
+            }
+        }
     }
 
 }
