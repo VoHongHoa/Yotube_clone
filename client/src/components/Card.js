@@ -1,13 +1,14 @@
 import "./Card.scss";
 import { useNavigate } from "react-router-dom";
 import errVideo from "../image/videotest.jpg";
-import { format } from "timeago.js";
 import { getUserInfor } from "../service/userService";
 import { useState, useEffect } from "react";
+
+import moment from "moment";
 function Card(props) {
   let navigate = useNavigate();
-  const handleSelectVideo = () => {
-    navigate("/video/12");
+  const handleSelectVideo = (videoId) => {
+    navigate(`/video/${videoId}`);
   };
   const [channel, setChannel] = useState({});
   useEffect(() => {
@@ -25,7 +26,7 @@ function Card(props) {
     <div class="col-3 grid-item mb-3 mt-3">
       <div
         className="video-image"
-        onClick={() => handleSelectVideo()}
+        onClick={() => handleSelectVideo(props.video._id)}
         style={
           props.video.imgUrl === ""
             ? { backgroundImage: `url(${errVideo}) ` }
@@ -39,7 +40,7 @@ function Card(props) {
               className="image"
               style={
                 channel.img && channel.img !== ""
-                  ? { backgroundImage: `url(${channel.imgUrl})` }
+                  ? { backgroundImage: `url(${channel.img})` }
                   : { backgroundImage: `url(${errVideo}) ` }
               }
             ></div>
@@ -48,7 +49,8 @@ function Card(props) {
             <span className="video-title">{props.video.title}</span>
             <span className="channel-name">{channel.name}</span>
             <span className="video-detail">
-              {props.video.views} views - {format(props.video.createdAt)}
+              {props.video.views} views -{" "}
+              {moment(props.video.createdAt).fromNow(true)}
             </span>
           </div>
         </div>

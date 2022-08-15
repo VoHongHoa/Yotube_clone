@@ -1,24 +1,62 @@
 import "./Signin.scss";
 import { useEffect, useState } from "react";
-import { signinService } from "../service/userService";
+import { googleAuth, signinService } from "../service/userService";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginFailed, loginStart, loginSuccess } from "../redux/userSlice";
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 function Signin() {
-  const [isSinginAction, setIsSigninAction] = useState(true);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   const handleSignin = async (e) => {
     e.preventDefault();
+    dispatch(loginStart());
     let data = {
       name,
       password,
     };
     try {
       let res = await signinService(data);
-      console.log(res);
+      dispatch(loginSuccess(res.data));
     } catch (e) {
       console.log(e);
+      dispatch(loginFailed());
     }
   };
+
+  const googleSignIn = () => {
+    dispatch(loginStart());
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        let data = {
+          name: result.user.displayName,
+          email: result.user.email,
+          img: result.user.photoURL,
+        };
+        console.log(result);
+        let res = await googleAuth(data);
+        dispatch(loginSuccess(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(loginFailed());
+      });
+  };
+
+  useEffect(() => {
+    const redirectPage = () => {
+      if (currentUser !== null) {
+        navigate("/");
+      }
+    };
+    redirectPage();
+  }, [currentUser]);
 
   return (
     <div className="signin-container">
@@ -34,10 +72,7 @@ function Signin() {
               className="form-control"
               id="username1"
               placeholder="Enter username"
-              onChange={(event) => () => {
-                setName(event.target.value);
-                setIsSigninAction(true);
-              }}
+              onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div className="form-group mt-2">
@@ -54,6 +89,10 @@ function Signin() {
             <button className="btn btn-primary mt-2" onClick={handleSignin}>
               Sign in
             </button>
+            <span className="mt-2 ">OR</span>
+            <div className="btn btn-primary mt-2" onClick={googleSignIn}>
+              Sign in with Google
+            </div>
             <span className="mt-2 ">OR</span>
           </div>
         </form>

@@ -1,6 +1,33 @@
 import "./Video.scss";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { fetchVideoById } from "../service/videoService";
+import { getUserInfor } from "../service/userService";
 
 function Video() {
+  const videoId = useLocation().pathname.split("/")[2];
+  const [video, setVideo] = useState({});
+  const [channel, setChannel] = useState({});
+  useEffect(() => {
+    const getVideoById = async () => {
+      try {
+        let res = await fetchVideoById(videoId);
+        setVideo(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    const getChannel = async () => {
+      try {
+        let res = await getUserInfor(video.userId);
+        setChannel(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getVideoById();
+    getChannel();
+  }, [videoId]);
   return (
     <div className="video-container">
       <div className="row">
@@ -12,28 +39,27 @@ function Video() {
             height="520px"
             frameBorder="0"
             allow="autoplay"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
           <div className="detail-video">
             <span className="hashtag">#duyenduyensoso #duuyen #orinnremix</span>
-            <span className="title">
-              Duyên Duyên Số Số (Orinn Remix) - Du Uyên | Gặp Gỡ Để Chia Ly Chia
-              Ly Để Gặp Gỡ Remix Tiktok 2022
-            </span>
+            <span className="title">{video.title}</span>
             <div className="detail mt-3">
-              <span>19.021 lượt xem - 11 thg 8, 2022</span>
+              <span>
+                {video.views} views - {video.createdAt}
+              </span>
               <div className="actions">
                 <button>
-                  <i class="fa-solid fa-thumbs-up"></i> Like
+                  <i className="fa-solid fa-thumbs-up"></i> Like
                 </button>
                 <button>
-                  <i class="fa-solid fa-thumbs-down"></i> Dislike
+                  <i className="fa-solid fa-thumbs-down"></i> Dislike
                 </button>
                 <button>
-                  <i class="fa-solid fa-share"></i> Share
+                  <i className="fa-solid fa-share"></i> Share
                 </button>
                 <button>
-                  <i class="fa-solid fa-floppy-disk"></i>Save
+                  <i className="fa-solid fa-floppy-disk"></i>Save
                 </button>
               </div>
             </div>
@@ -48,28 +74,21 @@ function Video() {
                   </div>
                   <div className="col-11 informations ">
                     <div className="channel-name">
-                      <span>Tăng Duy Tân </span>
-                      <span className="num-sub">280 N người đăng ký</span>
+                      <span>{channel.name}</span>
+                      <span className="num-sub">{channel.subscribers} sub</span>
                     </div>
                     <div className="hashtag mt-4 mb-4">
                       <span>#TangDuyTan #BenTrenTangLau</span>
                     </div>
                     <div className="descriptions">
-                      <p>
-                        Hello các khán thính giả thân yêu, Bên Trên Tầng Lầu sẽ
-                        là bài hát "khai vị" cho liên tiếp những ca khúc mà Tân
-                        phát hành trong năm nay. Hy vọng các bạn sẽ có một cái
-                        nhìn "nghệ thuật" hơn với thể loại này. Cám ơn mọi người
-                        và đừng quên nhấn theo dõi kênh Tăng Duy Tân để đón chờ
-                        những sản phẩm tiếp theo nhé!
-                      </p>
+                      <p>{video.description}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="sub col-3">
                 <button className="btn btn-danger">subscribe</button>
-                <i class="fa-solid fa-bell"></i>
+                <i className="fa-solid fa-bell"></i>
               </div>
             </div>
           </div>
@@ -78,7 +97,7 @@ function Video() {
             <div className="num-comments">
               <span>3.302 bình luận</span>
               <span className="soft">
-                <i class="fas fa-sort"></i>Soft by
+                <i className="fas fa-sort"></i>Soft by
               </span>
             </div>
             <div className="add-comment-container row mt-3">

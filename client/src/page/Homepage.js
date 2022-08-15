@@ -9,7 +9,7 @@ function Homepage(props) {
     const fetchVideos = async (type) => {
       try {
         let res = await fetchVideoRandom(type);
-        setVideos(res);
+        setVideos(res.data);
       } catch (e) {
         console.log(e);
       }

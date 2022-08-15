@@ -3,6 +3,7 @@ import logo from "../image/logo.webp";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Menu(props) {
   let navigate = useNavigate();
   const handleChangeModeMenu = () => {
@@ -14,12 +15,7 @@ function Menu(props) {
       return;
     }
   };
-  let activeStyle = {
-    textDecoration: "underline",
-    color: "yellow",
-    display: "flex",
-    gap: "5px",
-  };
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
     <div className="menu">
@@ -62,17 +58,21 @@ function Menu(props) {
           <span>Short</span>
         </div>
         <hr></hr>
+        {currentUser ? (
+          <div></div>
+        ) : (
+          <div className="sign-in">
+            <p>Sign in to like videos, comment and subscrise.</p>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleChangepage("signin")}
+            >
+              Sign in
+            </button>
+            <hr></hr>
+          </div>
+        )}
 
-        <div className="sign-in">
-          <p>Sign in to like videos, comment and subscrise.</p>
-          <button
-            className="btn btn-primary"
-            onClick={() => handleChangepage("signin")}
-          >
-            Sign in
-          </button>
-        </div>
-        <hr></hr>
         <div className="child-item">
           <i className="fas fa-photo-video"></i>
           <span>Library</span>
